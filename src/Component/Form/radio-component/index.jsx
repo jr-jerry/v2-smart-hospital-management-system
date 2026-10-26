@@ -1,9 +1,10 @@
 import { useState } from "react"
 
-const RadioComponent = () => {
+const RadioComponent = ({handleChange}) => {
     const [type, setType] = useState("patient");
     const handleTypeChange = (event) => {
         setType(event.target.value);
+        handleChange(event);
     }
     return (
         <>
