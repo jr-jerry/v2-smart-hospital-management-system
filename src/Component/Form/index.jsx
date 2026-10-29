@@ -1,12 +1,13 @@
 import { useState } from "react";
 import RadioComponent from "./radio-component";
+import { useUserContextConsumer } from "../../Context/UserContext";
+import { signUpApi } from "../../Api/api";
  
-
+export const initData={
+  name:"",password:"",type:"patient"
+}
 const FormComponent = () => {
-
-  const initData={
-    name:"",password:"",type:"patient"
-  }
+  const {setGlobalData}=useUserContextConsumer();
   const [data,setData]=useState(initData);
 
   const [login,setLogin]=useState(true);
@@ -24,6 +25,16 @@ const FormComponent = () => {
   
   const handleSubmitForm=(event)=>{
     event.preventDefault();
+    setGlobalData(data);
+    signUpApi(data);
+    showAlert();
+  }
+  const showAlert=()=>{
+     const message=login?"Login Succesfull":"Sign Up Succesfull";
+     alert(message);
+  }
+  const toggleForm=(event)=>{
+    event.preventDefault();
     setLogin(prev=>!prev);
   }
   return (
@@ -36,8 +47,8 @@ const FormComponent = () => {
       <input type="password" name="password" className="border-2 border-solid border-black" value={data.password} onChange={(e)=>handleChange(e)}/> 
    
       {(!login)?<RadioComponent handleChange={handleChange}/>:<></>}
-      <button onClick={(event)=>event.preventDefault()}>{login?"Login":"Sign Up"}</button>
-      <button onClick={handleSubmitForm}>{(login)?"new account":"already exist"}</button>
+      <button onClick={handleSubmitForm}>{login?"Login":"Sign Up"}</button>
+      <button onClick={toggleForm}>{(login)?"new account":"already exist"}</button>
     </form>
   )
 }
