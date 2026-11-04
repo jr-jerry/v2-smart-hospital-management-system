@@ -7,7 +7,7 @@ const RadioComponent = ({handleChange}) => {
         handleChange(event);
     }
     return (
-        <>
+        <div className="flex gap-4 my-4 ">
             <label>
                 <input
                     type="radio" name="type"
@@ -23,7 +23,7 @@ const RadioComponent = ({handleChange}) => {
                 />
                 patient
             </label>
-        </>
+        </div>
     )
 }
 
