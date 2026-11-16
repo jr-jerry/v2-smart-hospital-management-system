@@ -4,6 +4,7 @@ import FormComponent from "../../Component/Form";
 import { Nav_bar } from "../../Component/Nav_Bar";
 import { CustomForm } from "../../Component/Form2";
 import AboutSection from "../AboutSection";
+import ServiceSection from "../ServiceSection";
 
 export function LandingPage(){
     console.log("Landing page component render");
@@ -29,7 +30,7 @@ export function LandingPage(){
         
         {/* About us section */}
         <AboutSection/>
-        {/* Out Services */}
+        <ServiceSection/>
         {/* Out Doctor */}
         {/* Contact Us */}
         {/* Footer */}
